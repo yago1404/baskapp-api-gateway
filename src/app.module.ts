@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as dotenv from 'dotenv';
-import { LogMiddleware } from './infra/middlewares/log.middleware';
+import { LogMiddleware } from './middlewares/log.middleware';
 import { UserModule } from './modules/user/user.module';
 
 dotenv.config();
