@@ -1,9 +1,18 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Controller, Post, Req, Res } from '@nestjs/common';
+import { InternalClientService } from '../../infra/http/internal_client_service';
+import { Request, Response } from 'express';
+import { InternalResponseModel } from '../../infra/models/internal_response_model';
 
 @Controller('user')
 export class UserController {
+  constructor(private client: InternalClientService) {}
+
   @Post('/login')
-  async login(@Body() body: any) {
-    return body;
+  async login(@Req() request: Request, @Res() response: Response) {
+    const result = await this.client.post<InternalResponseModel<undefined>>(
+      '/user/login',
+      request,
+    );
+    return response.status(result.statusCode).json(result);
   }
 }
