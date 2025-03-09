@@ -3,11 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as dotenv from 'dotenv';
 import { LogMiddleware } from './infra/middlewares/log.middleware';
+import { UserModule } from './modules/user/user.module';
 
 dotenv.config();
 
 @Module({
-  imports: [],
+  imports: [UserModule],
   controllers: [AppController],
   providers: [AppService],
 })
