@@ -15,4 +15,13 @@ export class UserController {
     );
     return response.status(result.statusCode).json(result);
   }
+
+  @Post()
+  async createUser(@Req() request: Request, @Res() response: Response) {
+    const result = await this.client.post<InternalResponseModel<undefined>>(
+      '/user',
+      request,
+    );
+    return response.status(result.statusCode).json(result);
+  }
 }
