@@ -24,4 +24,13 @@ export class UserController {
     );
     return response.status(result.statusCode).json(result);
   }
+
+  @Post('/refresh')
+  async refreshToken(@Req() request: Request, @Res() response: Response) {
+    const result = await this.client.post<InternalResponseModel<undefined>>(
+      '/user/refresh',
+      request,
+    );
+    return response.status(result.statusCode).json(result);
+  }
 }
